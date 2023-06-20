@@ -5,7 +5,6 @@ import "./App.css";
 const App = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [turn, setTurn] = useState("🐗");
-  const [winner, setWinner] = useState(null);
 
   const handleClick = (i) => {
     if (squares[i] !== null || calculateWinner(squares)) {
@@ -14,10 +13,7 @@ const App = () => {
     let newSquares = [...squares];
     newSquares[i] = turn;
     setSquares(newSquares);
-    setWinner(calculateWinner(newSquares));
     newSquares[i] = turn === "🐗" ? "🦁" : "🐗";
-
-    setSquares(newSquares);
     setTurn(newSquares[i]);
     console.log(i);
   };
@@ -41,13 +37,17 @@ const App = () => {
       ) {
         return squares[a];
       }
-      if (squares.every((squares) => squares !== null)) {
-        return "No player";
-      }
     }
+
+    if (squares.every((square) => square !== null)) {
+      return "No player";
+    }
+
     return null;
   }
-
+  const gameRestart = () => {
+    window.location.reload();
+  };
   const champion = calculateWinner(squares);
   let status;
   if (champion) {
@@ -56,25 +56,21 @@ const App = () => {
   } else {
     status = { turn };
   }
-  const gameRestart = () => {
-    window.location.reload();
-  };
+
   return (
     <>
       <div className="background">
         <h1 className="header">Tic Tac Toe</h1>
 
         <div className="board">
-          {squares.map((square, index) => {
-            return (
-              <Square
-                square={square}
-                index={index}
-                key={index}
-                handleClick={handleClick}
-              />
-            );
-          })}
+          {squares.map((square, index) => (
+            <Square
+              square={square}
+              index={index}
+              key={index}
+              handleClick={handleClick}
+            />
+          ))}
         </div>
         <div>
           <button className="button" onClick={gameRestart}>
