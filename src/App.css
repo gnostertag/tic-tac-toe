@@ -13,13 +13,24 @@
   margin: 0 auto;
 }
 
-body {
+/* body {
   background-image: url(https://www.publicdomainpictures.net/pictures/270000/nahled/lion-king-1537188407Ea6.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: black;
+} */
+.background {
+  position: relative;
 }
-
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
 .header {
   font-family: "Lion kinG", sans-serif;
   text-align: center;
