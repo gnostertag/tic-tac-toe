@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Square from "./components/Square";
 import "./App.css";
+import video from "./assets/sunrise.mp4"
 
 const App = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
@@ -60,6 +61,7 @@ const App = () => {
   return (
     <>
       <div className="background">
+        <video src={video} autoPlay loop muted type="video/mp4" className="video-background"/>
         <h1 className="header">Tic Tac Toe</h1>
 
         <div className="board">
